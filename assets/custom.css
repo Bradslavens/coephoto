@@ -1,0 +1,48 @@
+#home {
+	background-image: url('/assets/house_cliff.png');
+	background-size: cover;
+	background-repeat: no-repeat;
+	color: blue;
+}
+
+a.list-group-item {
+	color:blue;
+	opacity: .9;
+}
+
+h4.list-group-item-heading {
+	color: red !important;
+}
+
+.img-thumbnail {
+	margin: 20px auto;
+	height: 250;
+	width: 200;
+}
+
+#services {
+	padding: 30px;
+	color:white;
+	background-color: orange;
+	font-size: 1.2em;
+	font-weight: bold;
+}
+
+#form {
+	padding: 30px;
+	background-color: gray;
+	color: orange;
+	font-weight: bold;
+	font-size: 1.2em;
+}
+
+.form-control {
+	background-color: blue;
+	color: white;
+	border-color: black;
+	border-width: 3px;
+}
+
+#samples {
+	padding:0px;
+}
