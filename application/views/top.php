@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
-<div class="container" id="top">
+<div class="container hidden-xs" id="top">
 	<div class="row">
 		<div class="col-md-12">
 			<img class="pull-left" src="/assets/logo_color_no_text.gif">

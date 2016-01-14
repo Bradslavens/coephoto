@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
-<div class="container" id="register">
+<div class="container" id="staff">
 	<div class="row">
 		<div class="col-md-12">
 			<h2>Staff Photographers</h2>

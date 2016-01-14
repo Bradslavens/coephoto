@@ -4,8 +4,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <div class="container" id="register">
 	<div class="row">
 		<div class="col-md-8">
-			<p>Register Here. You'll also receive weekly discounts and specials via email.</p>
-			<form class="form-inline">
+			<h2 class="tag_text">Register Here.</h2>
+			<p>You'll also receive weekly discounts and specials via email.</p>
+			<form class="form">
 			  <div class="form-group">
 			    <label for="Name">First Name</label>
 			    <input type="text" class="form-control" id="first_name" placeholder="Enter First Name">

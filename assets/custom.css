@@ -3,6 +3,16 @@
 	background-repeat: no-repeat;
 }
 
+#home  button.btn-default {
+	background: transparent;
+	border-radius: 5px;
+	border-style: solid;
+	border-width: 3px;
+	border-color: blue;
+	color: blue;
+	margin-bottom: 30px;
+}
+
 a.list-group-item {
 	color:blue;
 	opacity: .9;
@@ -35,8 +45,8 @@ h4.list-group-item-heading {
 }
 
 .form-control {
-	background-color: blue;
-	color: white;
+	background-color: white;
+	color: gray;
 	border-color: black;
 	border-width: 3px;
 }
@@ -47,36 +57,108 @@ h4.list-group-item-heading {
 
 body {
 	color: black;
+	font-family: "Arial Black",Gadget,sans-serif;
 }
 
 #sign_reg_phone {
-	font-size: 2em;
+	font-size: 1.5em;
+	color: white;
+	background: #4ba4d0;
+	padding-left: 10px;
+	padding-right: 10px;
 }
 
 #top {
 	background-position: right;
 	background-image: url('/assets/background.gif');
 	background-repeat: no-repeat; 
-	font-family: "Arial Black",Gadget,sans-serif;
 }
 
 #about {
 	background: #4ba4d0;
+	color: white;
+	font-size: 1.5em;
+}
+
+.tag_text {
+	font-size: 2em;
+	margin: 0 auto;
+	text-align: center;
 }
 
 #works{
 	background: #f29e25;
+	color: white;
+	font-size: 1.5em;
 }
 
 #register{
 	background: #8cc63f;
+	color: white;
+	font-size: 1.5em;
+}
+
+#register  button.btn-default {
+	background: transparent;
+	border-radius: 5px;
+	border-style: solid;
+	border-width: 3px;
+	border-color: white;
+	color: white;
+	margin-bottom: 30px;
 }
 
 #mail_list {
 	background: #666666;
+	color: white;
+	font-size: 1.5em;
+	padding: 10px;
+}
+
+#mail_list button.btn-default {
+	background: transparent;
+	border-radius: 5px;
+	border-style: solid;
+	border-width: 3px;
+	border-color: white;
+	color: white;
+
 }
 
 #footer  {
 	background: #b3b3b3;
 	color: white;
+}
+
+img {
+	margin: 10px;
+}
+
+.navbar-nav {
+	background: transparent;
+	font-weight: bold;
+	font-size: 1.2em;
+	
+}
+
+.navbar-brand {
+	margin-top: -20px;
+}
+
+#tag_line {
+	font-size: 2.25em;
+	color: blue;
+	padding: 30px;
+}
+
+.btn-default {
+	background: transparent;
+	border-radius: 2px;
+	border-style: solid;
+	border-width: 3px;
+	border-color: black;
+}
+
+#break img {
+	margin: 0 auto;
 }
