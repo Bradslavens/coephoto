@@ -1,8 +1,6 @@
 #home {
-	background-image: url('/assets/house_cliff.png');
 	background-size: cover;
 	background-repeat: no-repeat;
-	color: blue;
 }
 
 a.list-group-item {
@@ -45,4 +43,40 @@ h4.list-group-item-heading {
 
 #samples {
 	padding:0px;
+}
+
+body {
+	color: black;
+}
+
+#sign_reg_phone {
+	font-size: 2em;
+}
+
+#top {
+	background-position: right;
+	background-image: url('/assets/background.gif');
+	background-repeat: no-repeat; 
+	font-family: "Arial Black",Gadget,sans-serif;
+}
+
+#about {
+	background: #4ba4d0;
+}
+
+#works{
+	background: #f29e25;
+}
+
+#register{
+	background: #8cc63f;
+}
+
+#mail_list {
+	background: #666666;
+}
+
+#footer  {
+	background: #b3b3b3;
+	color: white;
 }

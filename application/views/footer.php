@@ -2,7 +2,16 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
 
-<div class="container">
+<div id="footer" class="container">
+	<img src="/assets/logo_white_with_text.gif" alt="logo white with text" class="img-rounded">
+	<img src="/assets/girl_camera.jpg" alt="girl with camera" class="img-rounded">
+	<p>
+		COE Foto
+		A Slavens, Inc. Company
+		3399 Ruffin Rd. #2M
+		San Diego, CA 92123
+		619-253-0529
+	</p>
 	&copy; Slavens, Inc. 2015
 </div>
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
