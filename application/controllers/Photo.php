@@ -21,8 +21,8 @@ class Photo extends CI_Controller {
 		$this->load->view('break');
 		$this->load->view('caro');
 		$this->load->view('break');
-		$this->load->view('mail_list');
-		$this->load->view('break');
+		// $this->load->view('mail_list');
+		// $this->load->view('break');
 		$this->load->view('footer');
 	}
 

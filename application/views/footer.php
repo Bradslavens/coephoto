@@ -4,18 +4,26 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 <div id="footer" class="container">
 	<div class="row">
-		<img src="/assets/logo_white_with_text.gif" alt="logo white with text" class="img-rounded">
-		<img src="/assets/girl_camera.jpg" alt="girl with camera" class="img-rounded">
-		<p class="pull-right">
+		<div class="col-xs-12 col-md-4">
+			<img src="/assets/logo_white_with_text.gif" alt="logo white with text" class="img-rounded">
+		</div>
+		<div class="col-xs-12 col-md-4">
+			<!-- <img src="/assets/girl_camera.jpg" alt="girl with camera" class="img-rounded"> -->
+		</div>
+		<div class="col-xs-12 col-md-4">
+		<p >
 			COE Foto<br/>
 			A Slavens, Inc. Company<br/>
 			3399 Ruffin Rd. #2M<br/>
 			San Diego, CA 92123<br/>
 			619-253-0529
 		</p>
+		</div>
 	</div>
 	<div class="row">
-		&copy; Slavens, Inc. 2015
+		<div class="col-md-12">
+			&copy; Slavens, Inc. 2015
+		</div>
 	</div>
 </div>
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
