@@ -25,4 +25,20 @@ class Photo extends CI_Controller {
 		$this->load->view('break');
 		$this->load->view('footer');
 	}
+
+	public function web_hook()
+	{
+		$this->load->model('main');
+		// add to database
+		$info = array(
+		'first_name' => 'photo ',
+		'last_name' => 'last ',
+		'email' =>  'e@g.com ',
+		'originator_id' => '387 ',
+		'type' => 27 // = photo client
+			);
+
+		$this->main->add_contact($info);
+
+	}
 }

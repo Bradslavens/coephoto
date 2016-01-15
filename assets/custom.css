@@ -96,6 +96,7 @@ body {
 	background: #8cc63f;
 	color: white;
 	font-size: 1.5em;
+	padding-bottom: 30px;
 }
 
 #register  button.btn-default {
@@ -161,4 +162,9 @@ img {
 
 #break img {
 	margin: 0 auto;
+}
+
+#mc_embed_signup_scroll {
+	color: black;
+	margin-bottom: 30px;
 }
