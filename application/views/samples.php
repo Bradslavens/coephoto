@@ -13,16 +13,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	  <!-- Wrapper for slides -->
 	  <div class="carousel-inner" role="listbox">
 	    <div class="item active">
-	      <img src="../assets/photographer2a.jpg" alt="...">
-	      <div class="carousel-caption">
-	        ...
-	      </div>
+	      <img src="../assets/port/port-front-1.jpg" alt="backyard">
+	    </div>
+	    <div class="item active">
+	      <img src="../assets/port/port-back-3.jpg" alt="backyard">
+	    </div>
+	    <div class="item active">
+	      <img src="../assets/port/port-back-2.jpg" alt="backyard">
 	    </div>
 	    <div class="item">
-	      <img src="../assets/photographer2a.jpg" alt="...">
-	      <div class="carousel-caption">
-	        ...
-	      </div>
+	      <img src="../assets/port/port-back-1.jpg" alt="backyard">
 	    </div>
 	    ...
 	  </div>
