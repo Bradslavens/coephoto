@@ -3,7 +3,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
 <div class="container" id="caro">
 
-	<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+<!-- count files for caro -->
+<?php  $it = new filesystemiterator(dirname(FCPATH.'/assets/port/'), FilesystemIterator::SKIP_DOTS); $pic_count = (iterator_count($it)/2)+2; echo $pic_count;?>
+
+	<div  id="carousel-example-generic" class="carousel slide" data-ride="carousel">
 	  <!-- Indicators -->
 	  <ol class="carousel-indicators">
 	    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
@@ -13,19 +16,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 	  <!-- Wrapper for slides -->
 	  <div class="carousel-inner" role="listbox">
-	    <div class="item active">
-	      <img src="/assets/home.jpg" alt="...">
-	      <!-- <div class="carousel-caption">
-	        ...
-	      </div> -->
-	    </div>
-	    <div class="item">
-	      <img src="/assets/home.jpg" alt="...">
-	      <!-- <div class="carousel-caption">
-	        ...
-	      </div> -->
-	    </div>
-	    ...
+	  	<?php
+	  		$i = 1 ;
+	  		while ( $i <= $pic_count): ?>
+	  		<div class="item <?php if ($i=1){ echo 'active';} ?>">
+		      <img  src="/assets/port/<?php echo $i; ?>.jpg" alt="real estate photo">
+		      <!-- <div class="carousel-caption">
+		        ...
+		      </div> -->
+		    </div>
+		    <?php 
+		    	$i++; 
+	    		endwhile; ?>
 	  </div>
 
 	  <!-- Controls -->

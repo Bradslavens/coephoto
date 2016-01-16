@@ -176,3 +176,16 @@ img {
 	color: black;
 	margin-bottom: 30px;
 }
+
+.carousel-inner img {
+	margin: 30px auto;
+	border: solid;
+	border-color: white;
+	border-width: 20px;
+	background: white;
+}
+
+.carousel {
+	background-image: url("/assets/bg1.gif");
+	background-repeat: repeat;
+}

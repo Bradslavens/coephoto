@@ -6,6 +6,8 @@ class Photo extends CI_Controller {
 
 	public function index()
 	{
+		$this->load->helper('url'); // for photo caro
+
 		$this->load->view('header');
 		$this->load->view('top');
 		$this->load->view('nav');
