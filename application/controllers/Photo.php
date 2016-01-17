@@ -3,10 +3,22 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Photo extends CI_Controller {
 
+        public function __construct()
+        {
+             parent::__construct();
+             // Your own constructor code
+             $this->load->helper('form');
+        }
 
-	public function index()
+	public function home($page = "home")
 	{
 		$this->load->helper('url'); // for photo caro
+
+		if($page == 'register_user')
+		{
+			echo "register user";
+			exit();
+		}
 
 		$this->load->view('header');
 		$this->load->view('top');
