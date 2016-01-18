@@ -129,4 +129,9 @@ class Photo extends CI_Controller {
 		}
 		wh_log('Finished processing request.');
 	}
+
+	public function reg_form()
+	{
+		var_dump($_POST);
+	}
 }
