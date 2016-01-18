@@ -8,17 +8,18 @@ class Photo extends CI_Controller {
              parent::__construct();
              // Your own constructor code
              $this->load->helper('form');
+             $this->load->model('main');
         }
+
+    // public function test(){
+    // 	$this->main->place_order(1);
+    // }
 
 	public function home($page = "home")
 	{
+
 		$this->load->helper('url'); // for photo caro
 
-		if($page == 'register_user')
-		{
-			echo "register user";
-			exit();
-		}
 
 		$this->load->view('header');
 		$this->load->view('top');
@@ -130,8 +131,57 @@ class Photo extends CI_Controller {
 		wh_log('Finished processing request.');
 	}
 
-	public function reg_form()
-	{
-		var_dump($_POST);
+	public function reg_form(){ 
+		// validate form
+		if($id = $this->main->add_contact()){
+
+			// send verification email
+			// get contact info
+			$contact = $this->main->get('contacts', array( 'id' => $id));
+	        // codeigniter email template
+			$data['contact'] = $contact[0];
+
+			$this->load->library('email');
+			$this->email->set_mailtype("html");
+
+			$this->email->from('welcome@coefoto.com');
+			$this->email->to($contact[0]['email']); 
+			$this->email->bcc('bradslavens@gmail.com'); 
+			$msg  = $this->load->view('mail/reg_verification', $data, TRUE);
+			// $msg .= $this->load->view(signature);
+
+			$this->email->subject('Registration Confirmation');
+			$this->email->message($msg); 
+			$this->email->set_alt_message('error');
+			echo $msg;
+			// $this->email->send();
+
+			// place order
+			if($this->input->post('address_1')){
+				
+				echo "got here";
+				if($order_number = $this->main->place_order($id)){
+					// get contact info
+			        // codeigniter email template
+					$this->email->set_mailtype("html");
+
+					$this->email->from('welcome@coefoto.com');
+					$this->email->to($contact[0]['email']); 
+					$this->email->bcc('bradslavens@gmail.com'); 
+					$msg  = $this->load->view('mail/ord_verification', $data, TRUE);
+					// $msg .= $this->load->view(signature);
+
+					$this->email->subject('Order Confirmation');
+					$this->email->message($msg); 
+					$this->email->set_alt_message('error');
+					echo $msg;
+					// $this->email->send();
+
+				}
+
+			}
+			
+		}
+
 	}
 }

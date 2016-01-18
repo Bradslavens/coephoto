@@ -34,8 +34,12 @@ input {
 			    <label for="exampleInputEmail1">Email</label>
 			    <input type="email" class="form-control" id="email" placeholder="email" required>
 			  </div>
-
 				
+			  <div class="form-group">
+			    <label for="phone">Phone</label>
+			    <input type="tel" class="form-control" id="phone" placeholder="phone" required>
+			  </div>
+					
 			  <div class="form-group">
 			    <label for="password">Password</label>
 			    <input type="password" class="form-control" id="password" required>
@@ -44,7 +48,7 @@ input {
 
 			  <div class="checkbox">
 			    <label>
-			      <input id="mail_list" type="checkbox"> Email me weekly specials!
+			      <input name="mail_list" id="mail_list" type="checkbox"> Email me weekly specials!
 			    </label>
 			  </div>
 
@@ -57,11 +61,15 @@ input {
 			  <div id= "property_dets" class="collapse" > <!-- display if client wants to order a shoot -->
 
 			  <div class="form-group">
-			    <label for="Address">Address</label>
+			    <label for="Address">Address 1</label>
 			    <input type="address" class="form-control" id="address_1" placeholder="Address">
 			  </div>
 
-				
+			  <div class="form-group">
+			    <label for="Address">Address 2</label>
+			    <input type="address" class="form-control" id="address_2" placeholder="Address">
+			  </div>
+
 			  <div class="form-group">
 			    <label for="city">City</label>
 			    <input type="text" class="form-control" id="city" placeholder="City">
@@ -78,6 +86,18 @@ input {
 			    <label for="zip">Zip</label>
 			    <input type="text" class="form-control" id="zip" placeholder="Zip">
 			  </div>
+
+			  <div class="form-group">
+			    <label for="package">Package</label>
+			    <input type="text" class="form-control" id="package" placeholder="1">
+			  </div>
+
+			  <div class="form-group">
+			    <label for="fee">Fee</label>
+			    <input type="text" class="form-control" id="fee" placeholder="299">
+			  </div>
+
+
 
 			  </div> <!-- property_dets -->
 
@@ -122,11 +142,16 @@ input {
 				    first_name = $('#first_name').val(),
 				    last_name = $('#last_name').val(),
 				    email = $('#email').val(),
+				    phone = $('#phone').val(),
 				    password = $('#password').val(),
 				    address_1 = $('#address_1').val(),
+				    address_2 = $('#address_2').val(),
 				    city = $('#city').val(),
 				    state = $('#state').val(),
 				    zip = $('#zip').val(),
+				    package1 = $('#package').val(),
+				    fee = $('#fee').val(),
+				    mail_list = $('#mail_list').val(),
 
 				    url = $form.attr( "action" );
 
@@ -138,11 +163,16 @@ input {
 				  	first_name : first_name,
 				  	last_name : last_name,
 				  	email : email,
+				  	phone : phone,
 				  	password : password,
 				  	address_1 : address_1,
+				  	address_2 : address_2,
 				  	city : city,
 				  	state : state,
-				  	zip : zip
+				  	zip : zip,
+				  	package1 : package1,
+				  	mail_list : mail_list,
+				  	fee : fee
 
 				  	};
 
