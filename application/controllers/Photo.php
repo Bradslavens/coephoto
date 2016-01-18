@@ -16,10 +16,12 @@ class Photo extends CI_Controller {
     // 	exit();
     // }
 
-	public function home($page = "home")
+	public function home($ad = "none")
 	{
 
 		$this->load->helper('url'); // for photo caro
+		$data['source'] = $ad;
+
 
 		// if($page == 'reg_form'){
 		// 	echo 'reg';
@@ -35,7 +37,7 @@ class Photo extends CI_Controller {
 		$this->load->view('break');
 		$this->load->view('works');
 		$this->load->view('break');
-		$this->load->view('register');
+		$this->load->view('register', $data);
 		$this->load->view('break');
 		$this->load->view('staff');
 		$this->load->view('break');
@@ -141,6 +143,7 @@ class Photo extends CI_Controller {
 		 // validate form
 		 $this->load->library('form_validation');
 
+
 		 $this->form_validation->set_rules('first_name', 'First Name', 'trim|required');
 		 $this->form_validation->set_rules('last_name', 'Last Name', 'trim|required');
 		 $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email'); // add |callback_email_check
@@ -154,7 +157,10 @@ class Photo extends CI_Controller {
 		 $this->form_validation->set_rules('zip', 'Zip', 'trim|max_length[10]|numeric');
 		 $this->form_validation->set_rules('package', 'Package', 'trim|max_length[5]|numeric');
 		 $this->form_validation->set_rules('fee', 'Fee', 'trim|max_length[8]|numeric');
+		 $this->form_validation->set_rules('source', 'source', 'trim|max_length[8]|alpha-numeric');
 
+		 // recaptcha
+		 $captcha=$this->input->post('g-recaptcha-response');
 
 		if ($this->form_validation->run() == FALSE)
 		{
@@ -162,58 +168,75 @@ class Photo extends CI_Controller {
 			$this->load->view('register');
 			$this->load->view('footer');
 		}
-		else
-		{
+		elseif(!$captcha){
+			// check recaptcha
+			$this->load->view('header');
+			$this->load->view('register');
+			$this->load->view('footer');
+			// add message 
+		}else{
 
-			if($id = $this->main->add_contact()){
+			$response=file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=6Lf4sxUTAAAAAJPb13pw0hwUqD4xhMD5nlmo3boU&response=".$captcha."&remoteip=".$_SERVER['REMOTE_ADDR']);
+	         	$d_r = json_decode($response);
+	        if($d_r->success==FALSE)
+	        {
+				$this->load->view('header');
+				$this->load->view('register');
+				$this->load->view('footer');
+				// add message 
 
-				// send verification email
-				// get contact info
-				$contact = $this->main->get('contacts', array( 'id' => $id));
-		        // codeigniter email template
-				$data['contact'] = $contact[0];
+	        }else{
 
-				$this->load->library('email');
-				$this->email->set_mailtype("html");
+				if($id = $this->main->add_contact()){
 
-				$this->email->from('welcome@coefoto.com');
-				$this->email->to($contact[0]['email']); 
-				$this->email->bcc('bradslavens@gmail.com'); 
-				$msg  = $this->load->view('mail/reg_verification', $data, TRUE);
-				// $msg .= $this->load->view(signature);
+					// send verification email
+					// get contact info
+					$contact = $this->main->get('contacts', array( 'id' => $id));
+			        // codeigniter email template
+					$data['contact'] = $contact[0];
 
-				$this->email->subject('Registration Confirmation');
-				$this->email->message($msg); 
-				$this->email->set_alt_message('error');
-				echo $msg;
-				// $this->email->send();
+					$this->load->library('email');
+					$this->email->set_mailtype("html");
 
-				// place order
-				if($this->input->post('address_1')){
-					
-					echo "got here";
-					if($order_number = $this->main->place_order($id)){
-						// get contact info
-				        // codeigniter email template
-						$this->email->set_mailtype("html");
+					$this->email->from('welcome@coefoto.com');
+					$this->email->to($contact[0]['email']); 
+					$this->email->bcc('bradslavens@gmail.com'); 
+					$msg  = $this->load->view('mail/reg_verification', $data, TRUE);
+					// $msg .= $this->load->view(signature);
 
-						$this->email->from('welcome@coefoto.com');
-						$this->email->to($contact[0]['email']); 
-						$this->email->bcc('bradslavens@gmail.com'); 
-						$msg  = $this->load->view('mail/ord_verification', $data, TRUE);
-						// $msg .= $this->load->view(signature);
+					$this->email->subject('Registration Confirmation');
+					$this->email->message($msg); 
+					$this->email->set_alt_message('error');
+					echo $msg;
+					// $this->email->send();
 
-						$this->email->subject('Order Confirmation');
-						$this->email->message($msg); 
-						$this->email->set_alt_message('error');
-						echo $msg;
-						// $this->email->send();
+					// place order
+					if($this->input->post('address_1')){
+						
+						echo "got here";
+						if($order_number = $this->main->place_order($id)){
+							// get contact info
+					        // codeigniter email template
+							$this->email->set_mailtype("html");
+
+							$this->email->from('welcome@coefoto.com');
+							$this->email->to($contact[0]['email']); 
+							$this->email->bcc('bradslavens@gmail.com'); 
+							$msg  = $this->load->view('mail/ord_verification', $data, TRUE);
+							// $msg .= $this->load->view(signature);
+
+							$this->email->subject('Order Confirmation');
+							$this->email->message($msg); 
+							$this->email->set_alt_message('error');
+							echo $msg;
+							// $this->email->send();
+
+						}
 
 					}
-
+					
+					$this->load->view('reg_thanks');
 				}
-				
-				$this->load->view('reg_thanks');
 			}
 
 		}
@@ -292,4 +315,5 @@ class Photo extends CI_Controller {
 
 		$this->load->view('footer');
 	}
+
 }

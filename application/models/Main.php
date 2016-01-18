@@ -55,6 +55,7 @@ class Main extends CI_Model {
 				'package' => $this->input->post('package1'),
 				'fee' => $this->input->post('fee'),
 				'cont_id' => $contact_id,
+				'source' => $this->input->post('source'),
 				'active' => 1
 				);
 

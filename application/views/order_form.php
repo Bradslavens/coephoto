@@ -68,7 +68,8 @@ input {
 
 			  <input type="hidden" name= "user_id" value="<?php echo $contact['user_id']; ?>">
 
-
+ 			  <div class="g-recaptcha" data-sitekey="6Lf4sxUTAAAAAOrUfluOStkbwuxuJWCDlmFWXp-5"></div>
+ 			  
  			  <button type="submit" class="btn btn-default">Submit</button>
 
 
