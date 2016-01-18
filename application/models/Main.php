@@ -98,4 +98,28 @@ class Main extends CI_Model {
 
 		return $q->result_array();
 	}
+
+	public function check_login(){
+
+		// crypt the password
+
+		$this->db->where('email',$this->input->post('email'));
+		$q = $this->db->get('contacts');
+		$ra = $q->result_array();
+
+		if(!empty($ra)){
+
+			if(password_verify($this->input->post('password'),$ra[0]['password'])){
+
+				return $q->result_array();
+			}
+			else{
+				
+				return FALSE;
+			}
+		}else{
+			return FALSE;
+		}
+
+	}
 }

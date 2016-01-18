@@ -21,7 +21,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	    <div class="thumbnail">
 	    	<img height= "220" width = "220" src="/assets/Marie-Currie.jpg" class="img-responsive img-circle" alt="Coe Foto Staff Photographer Marie Currie">
 	      <div class="caption">
-	        <h3>Greg Berg</h3>
+	        <h3>Marie Currie</h3>
 	        <p>Marie Currie is a native Californian and a licensed real estate professional with a passion for photography.  She has done real estate photography for traditional and luxury homes. Marie's photographic opportunities have been interesting and diverse. The adventures range from doing aerial and river photographs of Alaskan glaciers, the extravagance of Dubai, the jungles and rivers of the Amazon, and internal pictures of a girls prison in the Ukraine.  Other photo shoots include events with politicians, athletes, professional speakers, and book signings of #1 New York Times best-selling authors.  </p>
 	      </div>
 	    </div>

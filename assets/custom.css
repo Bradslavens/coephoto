@@ -4,13 +4,18 @@
 }
 
 #home  button.btn-default {
-	background: transparent;
+	background: red;
 	border-radius: 0;
 	border-style: solid;
 	border-width: 1px;
-	border-color: #7d848e;
-	color: #525a61;
+	border-color: white;
+	color: white;
 	margin-bottom: 30px;
+	height: 50px;
+	font-size: 2em;
+	/*width: 15em;*/
+	/*font-size: 2em;*/
+	/*padding: .5em;*/
 }
 
 a.list-group-item {
@@ -66,6 +71,11 @@ body {
 	background: #4ba4d0;
 	padding-left: 10px;
 	padding-right: 10px;
+}
+
+#sign_reg_phone a {
+	text-decoration: none;
+	color: white;
 }
 
 #top {

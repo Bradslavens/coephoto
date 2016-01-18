@@ -7,8 +7,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			<img src="/assets/girl_head.gif">
 		</div>
 		<div class="col-md-4">
-			<p id="tag_line">"Hi Agents, Welcome to COE Foto. <br /> Where you don't have to pay 'til COE."</p>
-			<a href="#register"><button class="btn-default pull-right">Register Now</button></a>
+			<p id="tag_line">Real Estate Photography with a twist -- Don't pay 'til COE. (If it doesn't close, you don't pay!) No Upfront FEES! Add us to your team for FREE!</p>
+			<a href="#register"><button class="btn-default pull-right">Order Now</button><span class="pull-right" style="font-size: 1em; margin-top: -10px;">(no credit card required, no payment until closeof escrow)</span></a>
 		</div>
 		<div class="col-md-4">
 			<img class="hidden-xs pull-right" src="/assets/logo_full_color.gif" height = "113" width = "156">

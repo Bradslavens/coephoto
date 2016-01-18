@@ -24,7 +24,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	        <li><a href="#register">Register</a></li>
 	        <li><a href="#staff">Staff</a></li>
 	        <li><a href="#caro">Portfolio</a></li>
-	        <li><a href="#mail_list">Join Our Mailing List</a></li>
+	        <li><a href="#register">Join Our Mailing List</a></li>
 
 	      </ul>
 	    </div><!-- /.navbar-collapse -->

@@ -264,4 +264,32 @@ class Photo extends CI_Controller {
 
 		}
 	}
+
+	public function sign_in($page = "home"){
+		
+
+		$this->load->view('header');
+
+		if($page == 'order'){
+			//place order
+			// send contact dets to order form
+			// send response email
+		}
+		else{
+
+			$contact = $this->main->check_login();
+			if($contact === FALSE ){
+				$data['response'] = "login Failed, please try again ";
+				$this->load->view('top', $data);
+			}
+			else
+			{
+				$data['contact'] = $contact[0];
+				$this->load->view('order_form', $data);
+			}
+		}
+
+
+		$this->load->view('footer');
+	}
 }
