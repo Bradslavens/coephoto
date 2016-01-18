@@ -16,85 +16,88 @@ input {
 			<h2 class="tag_text">To get started Register Here.</h2>
 			<p>You'll also receive weekly discounts and specials via email.</p>
 
-			<!-- customized form from jquery site -->
-			<form action="reg_form" id="registration">
+			<?php echo validation_errors(); ?>
+
+			<?php echo form_open('http://dev.photo/reg_form'); //<form> 	?>
+
+			<!-- <form action="reg_form" id="registration"> -->
 
 			  <div class="form-group">
 			    <label for="first_name">First Name</label>
-			    <input type="text" class="form-control" id="first_name" placeholder="first name">
+			    <input value="<?php echo set_value('first_name'); ?>"  type="text" class="form-control" name="first_name" placeholder="first name">
 			  </div>
 				
 			  <div class="form-group">
 			    <label for="last_name">Last Name</label>
-			    <input type="text" class="form-control" id="last_name" placeholder="last name">
+			    <input value="<?php echo set_value('last_name'); ?>"  type="text" class="form-control" name="last_name" placeholder="last name">
 			  </div>
 
 				
 			  <div class="form-group">
 			    <label for="exampleInputEmail1">Email</label>
-			    <input type="email" class="form-control" id="email" placeholder="email" required>
+			    <input value="<?php echo set_value('email'); ?>"  type="email" class="form-control" name="email" placeholder="email" required>
 			  </div>
 				
 			  <div class="form-group">
 			    <label for="phone">Phone</label>
-			    <input type="tel" class="form-control" id="phone" placeholder="phone" required>
+			    <input value="<?php echo set_value('phone'); ?>"  type="tel" class="form-control" name="phone" placeholder="phone" required>
 			  </div>
 					
 			  <div class="form-group">
 			    <label for="password">Password</label>
-			    <input type="password" class="form-control" id="password" required>
+			    <input type="password" class="form-control" name="password" required>
 			  </div>
 
 
 			  <div class="checkbox">
 			    <label>
-			      <input name="mail_list" id="mail_list" type="checkbox"> Email me weekly specials!
+			      <input value="<?php echo set_value('mail_list'); ?>"  name="mail_list" name="mail_list" type="checkbox"> Email me weekly specials!
 			    </label>
 			  </div>
 
 			  <div class="checkbox">
 			    <label>
-			      <input data-toggle="collapse" data-target="#property_dets" aria-expanded="false" aria-controls="property_dets" id="property" type="checkbox"> I need to order a photo shoot now!
+			      <input data-toggle="collapse" data-target="#property_dets" aria-expanded="false" aria-controls="property_dets" name="property" type="checkbox"> I need to order a photo shoot now!
 			    </label>
 			  </div>
 
 			  <div id= "property_dets" class="collapse" > <!-- display if client wants to order a shoot -->
 
+			  <p>Enter the address for your order. The fee is just <span class= "offer_1">299 and you only pay if and when it closes!</span></p>
+			  
 			  <div class="form-group">
 			    <label for="Address">Address 1</label>
-			    <input type="address" class="form-control" id="address_1" placeholder="Address">
+			    <input value="<?php echo set_value('address_1'); ?>"  type="address" class="form-control" name="address_1" placeholder="Address">
 			  </div>
 
 			  <div class="form-group">
 			    <label for="Address">Address 2</label>
-			    <input type="address" class="form-control" id="address_2" placeholder="Address">
+			    <input value="<?php echo set_value('address_2'); ?>"  type="address" class="form-control" name="address_2" placeholder="Address">
 			  </div>
 
 			  <div class="form-group">
 			    <label for="city">City</label>
-			    <input type="text" class="form-control" id="city" placeholder="City">
+			    <input value="<?php echo set_value('city'); ?>"  type="text" class="form-control" name="city" placeholder="City">
 			  </div>
 
 				
 			  <div class="form-group">
 			    <label for="state">State</label>
-			    <input type="text" class="form-control" id="state" placeholder="State">
+			    <input value="<?php echo set_value('state'); ?>"  type="text" class="form-control" name="state" placeholder="State">
 			  </div>
 
 				
 			  <div class="form-group">
 			    <label for="zip">Zip</label>
-			    <input type="text" class="form-control" id="zip" placeholder="Zip">
+			    <input value="<?php echo set_value('zip'); ?>"  type="text" class="form-control" name="zip" placeholder="Zip">
 			  </div>
 
 			  <div class="form-group">
-			    <label for="package">Package</label>
-			    <input type="text" class="form-control" id="package" placeholder="1">
+			    <input type="hidden" class="form-control" name="package1" value="1">
 			  </div>
 
 			  <div class="form-group">
-			    <label for="fee">Fee</label>
-			    <input type="text" class="form-control" id="fee" placeholder="299">
+			    <input type="hidden" class="form-control" name="fee" value="299">
 			  </div>
 
 
@@ -106,101 +109,6 @@ input {
 
 
 			</form>
-
-			<!-- the result of the search will be rendered inside this div -->
-
-			<div id="result"></div>
-
-			
-			<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>  
-
-			<script>
-			// A $( document ).ready() block.
-
-			$('document').ready(function() {
-
-			    console.log( "ready!" );
-
-
- 
-				// Attach a submit handler to the form
-
-				$( "#registration" ).submit(function( event ) {
-
-				  // Stop form from submitting normally
-
-				  event.preventDefault();
-				 
-				  console.log('submit');
-
-				 
-
-				  // Get some values from elements on the page:
-
-				  var $form = $( this ),
-
-				    first_name = $('#first_name').val(),
-				    last_name = $('#last_name').val(),
-				    email = $('#email').val(),
-				    phone = $('#phone').val(),
-				    password = $('#password').val(),
-				    address_1 = $('#address_1').val(),
-				    address_2 = $('#address_2').val(),
-				    city = $('#city').val(),
-				    state = $('#state').val(),
-				    zip = $('#zip').val(),
-				    package1 = $('#package').val(),
-				    fee = $('#fee').val(),
-				    mail_list = $('#mail_list').val(),
-
-				    url = $form.attr( "action" );
-
-				    console.log($('#email').val());
-
-				  // Send the data using post
-				  var info = {
-
-				  	first_name : first_name,
-				  	last_name : last_name,
-				  	email : email,
-				  	phone : phone,
-				  	password : password,
-				  	address_1 : address_1,
-				  	address_2 : address_2,
-				  	city : city,
-				  	state : state,
-				  	zip : zip,
-				  	package1 : package1,
-				  	mail_list : mail_list,
-				  	fee : fee
-
-				  	};
-
-				  	console.log(info);
-				  
-
-				  var posting = $.post( url, info);
-
-				 
-
-				  // Put the results in a div
-
-				  posting.done(function( data ) {
-
-				  	console.log(data);
-
-				    $( "#result" ).empty().append( data );
-
-				  });
-
-				});
-
-			});
-
-
-
-
-			</script>
 
 
 

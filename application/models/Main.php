@@ -22,7 +22,7 @@ class Main extends CI_Model {
 				'user_id' => $id,
 				'first_name' => $this->input->post('first_name'),
 				'mi' => $this->input->post('mi'),
-				'last_name' => $this->input->post('first_name'),
+				'last_name' => $this->input->post('last_name'),
 				'phone' => $this->input->post('phone'),
 				'mail_list' => $this->input->post('mail_list'),
 				'email' => $this->input->post('email'),
@@ -73,6 +73,28 @@ class Main extends CI_Model {
 			 $this->db->where($where);
 		}
 		$q = $this->db->get($table);
+
+		return $q->result_array();
+	}
+
+	public function get_column($table, $where, $col){
+
+		$this->db->select($col);
+		$this->db->where($where);
+		$q = $this->db->get($table);
+
+		return $q->result();
+	}
+
+	public function verify_contact($user_id){
+
+		$data = array('ver'=> 1);
+		$this->db->where('user_id', $user_id);
+		$this->db->update('contacts', $data);
+
+		$this->db->select('first_name, last_name');
+		$this->db->where('user_id', $user_id);
+		$q = $this->db->get('contacts');
 
 		return $q->result_array();
 	}

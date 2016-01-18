@@ -12,7 +12,8 @@ class Photo extends CI_Controller {
         }
 
     // public function test(){
-    // 	$this->main->place_order(1);
+    // 	var_dump($this->main->verify_contact('coe569c9d03c8328')) ;
+    // 	exit();
     // }
 
 	public function home($page = "home")
@@ -20,6 +21,10 @@ class Photo extends CI_Controller {
 
 		$this->load->helper('url'); // for photo caro
 
+		// if($page == 'reg_form'){
+		// 	echo 'reg';
+		// 	exit();
+		// }
 
 		$this->load->view('header');
 		$this->load->view('top');
@@ -132,56 +137,131 @@ class Photo extends CI_Controller {
 	}
 
 	public function reg_form(){ 
-		// validate form
-		if($id = $this->main->add_contact()){
 
-			// send verification email
-			// get contact info
-			$contact = $this->main->get('contacts', array( 'id' => $id));
-	        // codeigniter email template
-			$data['contact'] = $contact[0];
+		 // validate form
+		 $this->load->library('form_validation');
 
-			$this->load->library('email');
-			$this->email->set_mailtype("html");
+		 $this->form_validation->set_rules('first_name', 'First Name', 'trim|required');
+		 $this->form_validation->set_rules('last_name', 'Last Name', 'trim|required');
+		 $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email'); // add |callback_email_check
+		 $this->form_validation->set_rules('phone', 'Phone', 'trim|required|max_length[15]');
+		 $this->form_validation->set_rules('password', 'Password', 'required');
+		 $this->form_validation->set_rules('mail_list', 'Mail List', 'trim|max_length[2]|alpha');
+		 $this->form_validation->set_rules('address_1', 'Address 1', 'trim|alpha_numeric');
+		 $this->form_validation->set_rules('address_2', 'Address 2', 'trim|alpha_numeric');
+		 $this->form_validation->set_rules('city', 'City', 'trim|alpha');
+		 $this->form_validation->set_rules('state', 'State', 'trim|max_length[20]|alpha');
+		 $this->form_validation->set_rules('zip', 'Zip', 'trim|max_length[10]|numeric');
+		 $this->form_validation->set_rules('package', 'Package', 'trim|max_length[5]|numeric');
+		 $this->form_validation->set_rules('fee', 'Fee', 'trim|max_length[8]|numeric');
 
-			$this->email->from('welcome@coefoto.com');
-			$this->email->to($contact[0]['email']); 
-			$this->email->bcc('bradslavens@gmail.com'); 
-			$msg  = $this->load->view('mail/reg_verification', $data, TRUE);
-			// $msg .= $this->load->view(signature);
 
-			$this->email->subject('Registration Confirmation');
-			$this->email->message($msg); 
-			$this->email->set_alt_message('error');
-			echo $msg;
-			// $this->email->send();
+		if ($this->form_validation->run() == FALSE)
+		{
+			$this->load->view('header');
+			$this->load->view('register');
+			$this->load->view('footer');
+		}
+		else
+		{
 
-			// place order
-			if($this->input->post('address_1')){
-				
-				echo "got here";
-				if($order_number = $this->main->place_order($id)){
-					// get contact info
-			        // codeigniter email template
-					$this->email->set_mailtype("html");
+			if($id = $this->main->add_contact()){
 
-					$this->email->from('welcome@coefoto.com');
-					$this->email->to($contact[0]['email']); 
-					$this->email->bcc('bradslavens@gmail.com'); 
-					$msg  = $this->load->view('mail/ord_verification', $data, TRUE);
-					// $msg .= $this->load->view(signature);
+				// send verification email
+				// get contact info
+				$contact = $this->main->get('contacts', array( 'id' => $id));
+		        // codeigniter email template
+				$data['contact'] = $contact[0];
 
-					$this->email->subject('Order Confirmation');
-					$this->email->message($msg); 
-					$this->email->set_alt_message('error');
-					echo $msg;
-					// $this->email->send();
+				$this->load->library('email');
+				$this->email->set_mailtype("html");
+
+				$this->email->from('welcome@coefoto.com');
+				$this->email->to($contact[0]['email']); 
+				$this->email->bcc('bradslavens@gmail.com'); 
+				$msg  = $this->load->view('mail/reg_verification', $data, TRUE);
+				// $msg .= $this->load->view(signature);
+
+				$this->email->subject('Registration Confirmation');
+				$this->email->message($msg); 
+				$this->email->set_alt_message('error');
+				echo $msg;
+				// $this->email->send();
+
+				// place order
+				if($this->input->post('address_1')){
+					
+					echo "got here";
+					if($order_number = $this->main->place_order($id)){
+						// get contact info
+				        // codeigniter email template
+						$this->email->set_mailtype("html");
+
+						$this->email->from('welcome@coefoto.com');
+						$this->email->to($contact[0]['email']); 
+						$this->email->bcc('bradslavens@gmail.com'); 
+						$msg  = $this->load->view('mail/ord_verification', $data, TRUE);
+						// $msg .= $this->load->view(signature);
+
+						$this->email->subject('Order Confirmation');
+						$this->email->message($msg); 
+						$this->email->set_alt_message('error');
+						echo $msg;
+						// $this->email->send();
+
+					}
 
 				}
-
+				
+				$this->load->view('reg_thanks');
 			}
-			
+
 		}
 
+	}
+
+
+	// public function email_check($str)
+	// {
+
+	// 	$this->load->library('form_validation');
+	// 	// see if email exists
+	// 	if(!empty($this->main->get_column('contacts', array('email'=>$str), 'email')))
+	// 	{
+	// 		$this->form_validation->set_message('Email', ' %s already exists');
+	// 		return FALSE;
+	// 	}
+	// 	else
+	// 	{
+	// 		return TRUE;
+	// 	}
+	// }
+
+	public function verify($user_id = 9999){
+
+		if($user_id != 9999){
+
+			$ver = $this->main->verify_contact($user_id);
+
+			// mail verification confirmation
+				$data['contact'] = $ver[0];
+
+				$this->load->library('email');
+				$this->email->set_mailtype("html");
+
+				$this->email->from('confirmation@coefoto.com');
+				$this->email->to($ver[0]['email']); 
+				$this->email->bcc('bradslavens@gmail.com'); 
+				$msg  = $this->load->view('mail/confirmation', $data, TRUE);
+				// $msg .= $this->load->view(signature);
+
+				$this->email->subject('Thank You for Confirming your email');
+				$this->email->message($msg); 
+				$this->email->set_alt_message('error');
+				echo $msg;
+				// $this->email->send();
+
+
+		}
 	}
 }
