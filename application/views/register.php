@@ -101,7 +101,7 @@ input {
 			  </div>
 
 			  <div class="form-group">
-			    <input type="hidden" class="form-control" name="source" value="<?php echo $source; ?>">
+			    <input type="hidden" class="form-control" name="source" value="ecamp">
 			  </div>
 
 

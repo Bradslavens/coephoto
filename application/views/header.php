@@ -40,6 +40,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
     <script src='https://www.google.com/recaptcha/api.js'></script>
 
+    <LINK REL="SHORTCUT ICON" HREF="assets/logo.ico">
+
 </head>
 <body>
 

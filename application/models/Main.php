@@ -84,7 +84,7 @@ class Main extends CI_Model {
 		$this->db->where($where);
 		$q = $this->db->get($table);
 
-		return $q->result();
+		return $q->result_array();
 	}
 
 	public function verify_contact($user_id){

@@ -11,16 +11,18 @@ class Photo extends CI_Controller {
              $this->load->model('main');
         }
 
-    // public function test(){
-    // 	var_dump($this->main->verify_contact('coe569c9d03c8328')) ;
-    // 	exit();
-    // }
+    public function test(){
+    	$str = 'ssssss';
+		$result = $this->main->get_column('contacts',array('email'=> $str), 'email');
+		var_dump($result);
+    	exit();
+    }
 
 	public function home($ad = "none")
 	{
 
 		$this->load->helper('url'); // for photo caro
-		$data['source'] = $ad;
+		$_SESSION['source'] = $ad;
 
 
 		// if($page == 'reg_form'){
@@ -37,7 +39,7 @@ class Photo extends CI_Controller {
 		$this->load->view('break');
 		$this->load->view('works');
 		$this->load->view('break');
-		$this->load->view('register', $data);
+		$this->load->view('register');
 		$this->load->view('break');
 		$this->load->view('staff');
 		$this->load->view('break');
@@ -146,7 +148,10 @@ class Photo extends CI_Controller {
 
 		 $this->form_validation->set_rules('first_name', 'First Name', 'trim|required');
 		 $this->form_validation->set_rules('last_name', 'Last Name', 'trim|required');
-		 $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email'); // add |callback_email_check
+
+		 $this->form_validation->set_rules('email', 'Email', 'callback_username_check');
+
+		 // $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email'); // add |callback_email_check
 		 $this->form_validation->set_rules('phone', 'Phone', 'trim|required|max_length[15]');
 		 $this->form_validation->set_rules('password', 'Password', 'required');
 		 $this->form_validation->set_rules('mail_list', 'Mail List', 'trim|max_length[2]|alpha');
@@ -157,7 +162,7 @@ class Photo extends CI_Controller {
 		 $this->form_validation->set_rules('zip', 'Zip', 'trim|max_length[10]|numeric');
 		 $this->form_validation->set_rules('package', 'Package', 'trim|max_length[5]|numeric');
 		 $this->form_validation->set_rules('fee', 'Fee', 'trim|max_length[8]|numeric');
-		 $this->form_validation->set_rules('source', 'source', 'trim|max_length[8]|alpha-numeric');
+		 $this->form_validation->set_rules('source', 'source', 'trim|max_length[8]|alpha_numeric');
 
 		 // recaptcha
 		 $captcha=$this->input->post('g-recaptcha-response');
@@ -244,21 +249,32 @@ class Photo extends CI_Controller {
 	}
 
 
-	// public function email_check($str)
-	// {
+	public function username_check($str)
+	{
+		$result = $this->main->get_column('contacts',array('email'=> $str), 'email');
 
-	// 	$this->load->library('form_validation');
-	// 	// see if email exists
-	// 	if(!empty($this->main->get_column('contacts', array('email'=>$str), 'email')))
-	// 	{
-	// 		$this->form_validation->set_message('Email', ' %s already exists');
-	// 		return FALSE;
-	// 	}
-	// 	else
-	// 	{
-	// 		return TRUE;
-	// 	}
-	// }
+		if(!empty($result)){
+
+			$this->form_validation->set_message('username_check', 'The %s alrady exists, Thanks!');
+			
+			return FALSE;
+		}
+		else{
+			return TRUE;
+		}
+		
+		// if ($str == 'test@gm.com')
+		// {
+		// 	$this->form_validation->set_message('username_check', 'The %s field can not be the word "test"');
+		// 	return FALSE;
+		// }
+		// else
+		// {
+		// 	return TRUE;
+		// }
+	}
+
+
 
 	public function verify($user_id = 9999){
 
