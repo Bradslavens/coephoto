@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <div class="container" id="caro">
 
 <!-- count files for caro -->
-<?php  $it = new filesystemiterator(dirname(FCPATH.'/assets/port/'), FilesystemIterator::SKIP_DOTS); $pic_count = (iterator_count($it)/2)+2; ?>
+<?php $pic_count = 34; ?>
 
 	<div  id="carousel-example-generic" class="carousel slide" data-ride="carousel">
 	  <!-- Indicators -->
@@ -20,7 +20,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	  		$i = 1 ;
 	  		while ( $i <= $pic_count): ?>
 	  		<div class="item <?php if ($i==1){ echo 'active';} ?>">
-		      <img  src="/assets/port/<?php echo $i; ?>.jpg" alt="real estate photo">
+		      <img  src="/assets/port/<?php echo rand(1,34); ?>.jpg" alt="real estate photo">
 		      <!-- <div class="carousel-caption">
 		        ...
 		      </div> -->

@@ -41,6 +41,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <script src='https://www.google.com/recaptcha/api.js'></script>
 
     <LINK REL="SHORTCUT ICON" HREF="assets/logo.ico">
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700|Montserrat|Open+Sans:400,700|Fjalla+One' rel='stylesheet' type='text/css'>
 
 </head>
 <body>

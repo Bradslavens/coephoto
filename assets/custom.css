@@ -1,10 +1,17 @@
+/*available font families
+font-family: 'Noto Sans', sans-serif;
+font-family: 'Montserrat', sans-serif;
+font-family: 'Open Sans', sans-serif;
+font-family: 'Fjalla One', sans-serif;
+
+*/
 #home {
 	background-size: cover;
 	background-repeat: no-repeat;
 }
 
 #home  button.btn-default {
-	background: red;
+	background: #74c617;
 	border-radius: 0;
 	border-style: solid;
 	border-width: 1px;
@@ -62,7 +69,7 @@ h4.list-group-item-heading {
 
 body {
 	color: black;
-	font-family: "Arial Black",Gadget,sans-serif;
+	 font-family: 'Noto Sans', sans-serif;
 }
 
 #sign_reg_phone {
@@ -76,6 +83,14 @@ body {
 #sign_reg_phone a {
 	text-decoration: none;
 	color: white;
+}
+
+#sign_reg_phone button {
+	border-width: 0px;
+	background: #4ba4d0;
+	font-weight: bold;
+	font-size: .8em;
+
 }
 
 #top {
@@ -166,8 +181,9 @@ img {
 
 #tag_line {
 	font-size: 2em;
-	color: #7d848e;
-	padding: 30px;
+	color: black;
+	padding: 0px;
+	font-weight: bold;
 }
 
 .btn-default {
@@ -198,4 +214,17 @@ img {
 .carousel {
 	background-image: url("/assets/bg1.gif");
 	background-repeat: repeat;
+}
+
+#offer {
+	font-size: 2em;
+	color: orange;
+	font-weight: bold;
+}
+
+.top, .top:hover {
+	background: white;
+	color: gray;
+	font-weight: bold;
+	text-decoration: none;
 }
