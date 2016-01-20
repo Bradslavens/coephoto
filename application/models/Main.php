@@ -88,7 +88,7 @@ class Main extends CI_Model {
 	}
 
 	public function verify_contact($user_id){
-
+		
 		$data = array('ver'=> 1);
 		$this->db->where('user_id', $user_id);
 		$this->db->update('contacts', $data);

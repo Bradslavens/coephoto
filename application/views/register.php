@@ -18,8 +18,7 @@ input {
 
 			<?php echo validation_errors(); ?>
 
-			<?php echo form_open('http://dev.photo/reg_form'); //<form> 	?>
-
+			<form action="reg_form" method="POST">
 			<!-- <form action="reg_form" id="registration"> -->
 
 			  <div class="form-group">

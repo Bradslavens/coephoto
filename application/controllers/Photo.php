@@ -9,19 +9,16 @@ class Photo extends CI_Controller {
              // Your own constructor code
              $this->load->helper('form');
              $this->load->model('main');
+			 $this->load->helper('url'); // for photo caro
         }
 
     public function test(){
-    	$str = 'ssssss';
-		$result = $this->main->get_column('contacts',array('email'=> $str), 'email');
-		var_dump($result);
-    	exit();
+    	echo FCPATH;
+
     }
 
-	public function home($ad = "none")
+	public function index($ad = "none")
 	{
-
-		$this->load->helper('url'); // for photo caro
 		$_SESSION['source'] = $ad;
 
 
@@ -71,7 +68,6 @@ class Photo extends CI_Controller {
 		http://www.mydomain.com/webhook.php?key=EnterAKey!
 
 		***********************************************/
-		$this->load->helper('url');
 		$this->load->helper('file');
 
 
@@ -166,8 +162,9 @@ class Photo extends CI_Controller {
 
 		 // recaptcha
 		 $captcha=$this->input->post('g-recaptcha-response');
+		if ($this->form_validation->run() !== FALSE)
 
-		if ($this->form_validation->run() == FALSE)
+		if ($this->form_validation->run() === FALSE)
 		{
 			$this->load->view('header');
 			$this->load->view('register');
@@ -193,7 +190,6 @@ class Photo extends CI_Controller {
 	        }else{
 
 				if($id = $this->main->add_contact()){
-
 					// send verification email
 					// get contact info
 					$contact = $this->main->get('contacts', array( 'id' => $id));
@@ -212,13 +208,12 @@ class Photo extends CI_Controller {
 					$this->email->subject('Registration Confirmation');
 					$this->email->message($msg); 
 					$this->email->set_alt_message('error');
-					echo $msg;
-					// $this->email->send();
+					// echo $msg;
+					$this->email->send();
 
 					// place order
 					if($this->input->post('address_1')){
-						
-						echo "got here";
+						echo "mailing order";
 						if($order_number = $this->main->place_order($id)){
 							// get contact info
 					        // codeigniter email template
@@ -233,19 +228,18 @@ class Photo extends CI_Controller {
 							$this->email->subject('Order Confirmation');
 							$this->email->message($msg); 
 							$this->email->set_alt_message('error');
-							echo $msg;
-							// $this->email->send();
+							// echo $msg;
+							$this->email->send();
 
 						}
 
 					}
 					
-					$this->load->view('reg_thanks');
 				}
+					$this->load->view('reg_thanks');
 			}
 
 		}
-
 	}
 
 
@@ -282,25 +276,16 @@ class Photo extends CI_Controller {
 
 			$ver = $this->main->verify_contact($user_id);
 
-			// mail verification confirmation
-				$data['contact'] = $ver[0];
 
-				$this->load->library('email');
-				$this->email->set_mailtype("html");
+			if(!empty($ver))
+			{
+				$data['contact'] = $ver[0]['first_name'];
 
-				$this->email->from('confirmation@coefoto.com');
-				$this->email->to($ver[0]['email']); 
-				$this->email->bcc('bradslavens@gmail.com'); 
-				$msg  = $this->load->view('mail/confirmation', $data, TRUE);
-				// $msg .= $this->load->view(signature);
-
-				$this->email->subject('Thank You for Confirming your email');
-				$this->email->message($msg); 
-				$this->email->set_alt_message('error');
-				echo $msg;
-				// $this->email->send();
-
-
+				$this->load->view('ver_thanks',$data);
+			}
+			else{
+				echo "id does not exist";
+			}
 		}
 	}
 
