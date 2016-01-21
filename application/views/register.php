@@ -2,13 +2,6 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
 
-<style type="text/css">
-input {
-	font-family: "Trebuchet MS", Helvetica, sans-serif;
-	color: black;
-	border: 1px;
-}
-</style>
 
 <div class="container" id="register">
 	<div class="row">
@@ -16,24 +9,24 @@ input {
 			<h2 class="tag_text">To get started Register Here.</h2>
 			<p>You'll also receive weekly discounts and specials via email.</p>
 
-			<?php echo validation_errors(); ?>
+		 	<span class="errors" ><?php echo validation_errors(); ?></span>	
 
 			<form action="reg_form" method="POST">
 			<!-- <form action="reg_form" id="registration"> -->
 
 			  <div class="form-group">
-			    <label for="first_name">First Name</label>
+			    <label for="first_name">First Name *</label>
 			    <input value="<?php echo set_value('first_name'); ?>"  type="text" class="form-control" name="first_name" placeholder="first name">
 			  </div>
 				
 			  <div class="form-group">
-			    <label for="last_name">Last Name</label>
+			    <label for="last_name">Last Name *</label>
 			    <input value="<?php echo set_value('last_name'); ?>"  type="text" class="form-control" name="last_name" placeholder="last name">
 			  </div>
 
 				
 			  <div class="form-group">
-			    <label for="exampleInputEmail1">Email</label>
+			    <label for="exampleInputEmail1">Email *</label>
 			    <input value="<?php echo set_value('email'); ?>"  type="email" class="form-control" name="email" placeholder="email" required>
 			  </div>
 				
@@ -43,7 +36,7 @@ input {
 			  </div>
 					
 			  <div class="form-group">
-			    <label for="password">Password</label>
+			    <label for="password">Create Password *</label>
 			    <input type="password" class="form-control" name="password" required>
 			  </div>
 
@@ -119,7 +112,7 @@ input {
 
 		</div>
 		<div class="col-4-md">
-			<img src="/assets/logo_white_no_text.gif">
+			<img class="hidden-xs" src="/assets/logo_white_no_text.gif">
 		</div>
 	</div>
 </div>

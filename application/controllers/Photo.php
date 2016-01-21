@@ -12,10 +12,13 @@ class Photo extends CI_Controller {
 			 $this->load->helper('url'); // for photo caro
         }
 
-    public function test(){
-    	echo FCPATH;
-
+    public function test()
+    {
+    	// test email templates
+    	$data['contact'] = array('first_name' => 'brad', 'user_id' => 'xx');
+    	$this->load->view('mail/reg_verification', $data);
     }
+
 
 	public function index($ad = "none")
 	{
@@ -144,11 +147,8 @@ class Photo extends CI_Controller {
 
 		 $this->form_validation->set_rules('first_name', 'First Name', 'trim|required');
 		 $this->form_validation->set_rules('last_name', 'Last Name', 'trim|required');
-
-		 $this->form_validation->set_rules('email', 'Email', 'callback_username_check');
-
-		 // $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email'); // add |callback_email_check
-		 $this->form_validation->set_rules('phone', 'Phone', 'trim|required|max_length[15]');
+		 $this->form_validation->set_rules('email', 'Email', 'callback_username_check|required');
+    	 $this->form_validation->set_rules('phone', 'Phone', 'trim|max_length[15]');
 		 $this->form_validation->set_rules('password', 'Password', 'required');
 		 $this->form_validation->set_rules('mail_list', 'Mail List', 'trim|max_length[2]|alpha');
 		 $this->form_validation->set_rules('address_1', 'Address 1', 'trim|alpha_numeric');
@@ -162,7 +162,6 @@ class Photo extends CI_Controller {
 
 		 // recaptcha
 		 $captcha=$this->input->post('g-recaptcha-response');
-		if ($this->form_validation->run() !== FALSE)
 
 		if ($this->form_validation->run() === FALSE)
 		{
@@ -242,8 +241,7 @@ class Photo extends CI_Controller {
 		}
 	}
 
-
-	public function username_check($str)
+	public function username_check($str )
 	{
 		$result = $this->main->get_column('contacts',array('email'=> $str), 'email');
 
@@ -257,15 +255,6 @@ class Photo extends CI_Controller {
 			return TRUE;
 		}
 		
-		// if ($str == 'test@gm.com')
-		// {
-		// 	$this->form_validation->set_message('username_check', 'The %s field can not be the word "test"');
-		// 	return FALSE;
-		// }
-		// else
-		// {
-		// 	return TRUE;
-		// }
 	}
 
 

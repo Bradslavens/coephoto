@@ -30,7 +30,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			</div>
 		</div>
 		<div class="col-md-4">
-			<img class="pull-right" src="/assets/logo_white_no_text.gif">
+			<img class="pull-right hidden-xs" src="/assets/logo_white_no_text.gif">
 		</div>
 	</div>
 </div>

@@ -1,10 +1,10 @@
-/*available font families
-font-family: 'Noto Sans', sans-serif;
-font-family: 'Montserrat', sans-serif;
-font-family: 'Open Sans', sans-serif;
-font-family: 'Fjalla One', sans-serif;
 
-*/
+img {
+	display: block;
+	margin: 0 auto;
+	overflow: hidden;
+}
+
 #home {
 	background-size: cover;
 	background-repeat: no-repeat;
@@ -160,6 +160,19 @@ body {
 	padding: 2%;
 }
 
+#footer p {
+	text-align: center;
+	display: block;
+	margin: 0 auto;
+	color: black;
+	background-color: white;
+}
+
+#footer img {
+	display: block;
+	margin: 0 auto;
+}
+
 .img-rounded {
 	margin: auto;
 }
@@ -182,8 +195,12 @@ img {
 #tag_line {
 	font-size: 2em;
 	color: black;
-	padding: 0px;
 	font-weight: bold;
+}
+
+#tag_line+a, #tag_line, #offer {
+	display: block;
+	padding: 0px 20px;
 }
 
 .btn-default {
@@ -192,10 +209,6 @@ img {
 	border-style: solid;
 	border-width: 3px;
 	border-color: black;
-}
-
-#break img {
-	margin: 0 auto;
 }
 
 #mc_embed_signup_scroll {
@@ -227,4 +240,19 @@ img {
 	color: gray;
 	font-weight: bold;
 	text-decoration: none;
+}
+
+.errors {
+	display: block;
+	background-color: white;
+	color: red;
+	padding: 10px;
+}
+
+
+
+input {
+	font-family: "Trebuchet MS", Helvetica, sans-serif;
+	color: black;
+	border: 1px;
 }
