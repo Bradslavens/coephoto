@@ -11,7 +11,7 @@
 		</p>
 		<p>Best Regards!</p>
 
-		<a href="coefoto.com"><img height="75px" src="/assets/logo_full_color.gif" style="display: block;margin: 0 auto;"></a>	
+		<a href="coefoto.com"><img height="75px" src="http://photo.srsample.us/assets/logo_full_color.gif" style="display: block;margin: 0 auto;"></a>	
 
 		<div class="address" style="text-align: center;">
 			COEfoto <br>

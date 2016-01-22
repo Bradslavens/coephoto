@@ -244,7 +244,7 @@ img {
 
 .errors {
 	display: block;
-	background-color: white;
+	/*background-color: white;*/
 	color: red;
 	padding: 10px;
 }
@@ -255,4 +255,29 @@ input {
 	font-family: "Trebuchet MS", Helvetica, sans-serif;
 	color: black;
 	border: 1px;
+}
+
+
+.outer {
+
+	padding: 10px 50px;
+
+}
+
+.inner{
+	padding: 20px;
+	margin: 10px 20px;
+	background: #4ba4d0;
+	color: white;
+	font-size: 1.5em;
+}
+
+.inner a{
+	display: block;
+	text-decoration: none;
+	color: #4ba4d0;
+	background-color: white;
+	padding: 10px 20px;
+	margin-top: 20px;
+	width: 10em;
 }

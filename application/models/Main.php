@@ -25,6 +25,7 @@ class Main extends CI_Model {
 				'last_name' => $this->input->post('last_name'),
 				'phone' => $this->input->post('phone'),
 				'mail_list' => $this->input->post('mail_list'),
+				'source' => $this->input->post('source'),
 				'email' => $this->input->post('email'),
 				'password' => $hash_password
 
@@ -55,7 +56,6 @@ class Main extends CI_Model {
 				'package' => $this->input->post('package1'),
 				'fee' => $this->input->post('fee'),
 				'cont_id' => $contact_id,
-				'source' => $this->input->post('source'),
 				'active' => 1
 				);
 

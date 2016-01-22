@@ -3,22 +3,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Photo extends CI_Controller {
 
-        public function __construct()
-        {
-             parent::__construct();
-             // Your own constructor code
-             $this->load->helper('form');
-             $this->load->model('main');
-			 $this->load->helper('url'); // for photo caro
-        }
-
-    public function test()
+    public function __construct()
     {
-    	// test email templates
-    	$data['contact'] = array('first_name' => 'brad', 'user_id' => 'xx');
-    	$this->load->view('mail/reg_verification', $data);
+         parent::__construct();
+         // Your own constructor code
+         $this->load->helper('form');
+         $this->load->model('main');
+		 $this->load->helper('url'); // for photo caro
     }
-
 
 	public function index($ad = "none")
 	{
@@ -144,21 +136,20 @@ class Photo extends CI_Controller {
 		 // validate form
 		 $this->load->library('form_validation');
 
-
 		 $this->form_validation->set_rules('first_name', 'First Name', 'trim|required');
 		 $this->form_validation->set_rules('last_name', 'Last Name', 'trim|required');
 		 $this->form_validation->set_rules('email', 'Email', 'callback_username_check|required');
     	 $this->form_validation->set_rules('phone', 'Phone', 'trim|max_length[15]');
 		 $this->form_validation->set_rules('password', 'Password', 'required');
-		 $this->form_validation->set_rules('mail_list', 'Mail List', 'trim|max_length[2]|alpha');
+		 $this->form_validation->set_rules('mail_list', 'Mail List', 'trim|max_length[1]|numeric');
 		 $this->form_validation->set_rules('address_1', 'Address 1', 'trim|alpha_numeric');
 		 $this->form_validation->set_rules('address_2', 'Address 2', 'trim|alpha_numeric');
-		 $this->form_validation->set_rules('city', 'City', 'trim|alpha');
+		 $this->form_validation->set_rules('city', 'City', 'trim');
 		 $this->form_validation->set_rules('state', 'State', 'trim|max_length[20]|alpha');
 		 $this->form_validation->set_rules('zip', 'Zip', 'trim|max_length[10]|numeric');
 		 $this->form_validation->set_rules('package', 'Package', 'trim|max_length[5]|numeric');
 		 $this->form_validation->set_rules('fee', 'Fee', 'trim|max_length[8]|numeric');
-		 $this->form_validation->set_rules('source', 'source', 'trim|max_length[8]|alpha_numeric');
+		 $this->form_validation->set_rules('source', 'Source', 'trim|max_length[8]|alpha_numeric');
 
 		 // recaptcha
 		 $captcha=$this->input->post('g-recaptcha-response');
@@ -204,15 +195,14 @@ class Photo extends CI_Controller {
 					$msg  = $this->load->view('mail/reg_verification', $data, TRUE);
 					// $msg .= $this->load->view(signature);
 
-					$this->email->subject('Registration Confirmation');
+					$this->email->subject('COE Foto -Registration Confirmation');
 					$this->email->message($msg); 
-					$this->email->set_alt_message('error');
+					$this->email->set_alt_message('error the email requires html, please contact Service at 619-253-0529');
 					// echo $msg;
 					$this->email->send();
 
 					// place order
 					if($this->input->post('address_1')){
-						echo "mailing order";
 						if($order_number = $this->main->place_order($id)){
 							// get contact info
 					        // codeigniter email template
@@ -235,7 +225,9 @@ class Photo extends CI_Controller {
 					}
 					
 				}
+					$this->load->view('header');
 					$this->load->view('reg_thanks');
+					$this->load->view('footer');
 			}
 
 		}
@@ -258,7 +250,6 @@ class Photo extends CI_Controller {
 	}
 
 
-
 	public function verify($user_id = 9999){
 
 		if($user_id != 9999){
@@ -269,8 +260,9 @@ class Photo extends CI_Controller {
 			if(!empty($ver))
 			{
 				$data['contact'] = $ver[0]['first_name'];
-
+				$this->load->view('header');
 				$this->load->view('ver_thanks',$data);
+				$this->load->view('footer');
 			}
 			else{
 				echo "id does not exist";

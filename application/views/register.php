@@ -43,13 +43,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 			  <div class="checkbox">
 			    <label>
-			      <input value="<?php echo set_value('mail_list'); ?>"  name="mail_list" name="mail_list" type="checkbox"> Email me weekly specials!
+			      <input <?php if(set_value('mail_list')){ echo "checked"; } ?> value="1" name="mail_list" type="checkbox"> Email me weekly specials!
 			    </label>
 			  </div>
 
 			  <div class="checkbox">
 			    <label>
-			      <input data-toggle="collapse" data-target="#property_dets" aria-expanded="false" aria-controls="property_dets" name="property" type="checkbox"> I need to order a photo shoot now!
+			      <input  data-toggle="collapse" data-target="#property_dets" aria-expanded="false" aria-controls="property_dets" name="property" type="checkbox"> I need to order a photo shoot now!
 			    </label>
 			  </div>
 
