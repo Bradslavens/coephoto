@@ -31,7 +31,6 @@ class Photo extends CI_Controller {
 		$this->load->view('break');
 		$this->load->view('works');
 		$this->load->view('break');
-		$this->load->view('register');
 		$this->load->view('break');
 		$this->load->view('staff');
 		$this->load->view('break');
@@ -142,8 +141,8 @@ class Photo extends CI_Controller {
     	 $this->form_validation->set_rules('phone', 'Phone', 'trim|max_length[15]');
 		 $this->form_validation->set_rules('password', 'Password', 'required');
 		 $this->form_validation->set_rules('mail_list', 'Mail List', 'trim|max_length[1]|numeric');
-		 $this->form_validation->set_rules('address_1', 'Address 1', 'trim|alpha_numeric');
-		 $this->form_validation->set_rules('address_2', 'Address 2', 'trim|alpha_numeric');
+		 $this->form_validation->set_rules('address_1', 'Address 1', 'trim');
+		 $this->form_validation->set_rules('address_2', 'Address 2', 'trim');
 		 $this->form_validation->set_rules('city', 'City', 'trim');
 		 $this->form_validation->set_rules('state', 'State', 'trim|max_length[20]|alpha');
 		 $this->form_validation->set_rules('zip', 'Zip', 'trim|max_length[10]|numeric');

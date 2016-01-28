@@ -9,15 +9,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			<span class="pull-right" id="sign_reg_phone">
 
 				
-			<button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#sign_in_form" aria-expanded="false" aria-controls="sign_in_form">Sign In</button>  | <a href="#register">Register</a>  
+			<button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#sign_in_form" aria-expanded="false" aria-controls="sign_in_form">Sign In</button>  | <a href="http://photo.srsample.us/#register">Register</a>  
 				
-				<div style="color: black;" id="sign_in_form" class="collapse">
+				<div id="sign_in_form" class="collapse">
 					<?php echo validation_errors(); ?>
 
-					<?php echo form_open('http://dev.photo/sign_in'); //<form> 	?>
-
+					<?php echo form_open('http://photo.srsample.us/sign_in'); //<form> 	?>
+					<label>Email:</label> <br>
 					<input type="email" name="email" placeholder="Enter Email"><br />
-					<input type="password" name="password" >
+					<label>Password:</label> <br>
+					<input type="password" name="password" > <br>
 
 					<input type="submit" value="login">
 					</form>

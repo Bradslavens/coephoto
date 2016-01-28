@@ -55,7 +55,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 			  <div id= "property_dets" class="collapse" > <!-- display if client wants to order a shoot -->
 
-			  <p>Enter the address for your order. The fee is just <span class= "offer_1">299 and you only pay if and when it closes!</span></p>
+			  <p>Enter the address for your order. The fee is just <span class= "offer_1">$299 and you only pay if and when it closes!</span></p>
 			  
 			  <div class="form-group">
 			    <label for="Address">Address 1</label>

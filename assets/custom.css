@@ -93,6 +93,13 @@ body {
 
 }
 
+@media screen and (max-width: 500px) {	
+
+	#top {
+		background-image: none !important;
+	}
+}
+
 #top {
 	background-position: right;
 	background-image: url('/assets/background.gif');
@@ -280,4 +287,12 @@ input {
 	padding: 10px 20px;
 	margin-top: 20px;
 	width: 10em;
+}
+
+#sign_in_form input {
+	margin: 5px 0;
+}
+
+#sign_in_form label{
+	color: white;
 }

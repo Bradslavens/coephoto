@@ -41,7 +41,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	      <ul class="nav navbar-nav">
 	        <li><a href="#about">About <span class="sr-only">(current)</span></a></li>
 	        <li><a href="#works">How it Works</a></li>
-	        <li><a href="#register">Register</a></li>
 	        <li><a href="#staff">Staff</a></li>
 	        <li><a href="#caro">Portfolio</a></li>
 	        <li><a href="#register">Join Our Mailing List</a></li>
