@@ -144,6 +144,7 @@ class Photo extends CI_Controller {
 		 $this->form_validation->set_rules('last_name', 'Last Name', 'trim|required');
 		 $this->form_validation->set_rules('email', 'Email', 'callback_username_check|required');
     	 $this->form_validation->set_rules('phone', 'Phone', 'trim|max_length[15]');
+    	 $this->form_validation->set_rules('billing', 'Billing', 'trim|max_length[1]|numeric');
 		 $this->form_validation->set_rules('password', 'Password', 'required');
 		 $this->form_validation->set_rules('mail_list', 'Mail List', 'trim|max_length[1]|numeric');
 		 $this->form_validation->set_rules('source', 'Source', 'trim|max_length[8]|alpha_numeric');
@@ -181,12 +182,18 @@ class Photo extends CI_Controller {
 					// get contact info
 					$contact = $this->main->get('contacts', array( 'id' => $id));
 			        // codeigniter email template
+
+					$ra1 = array(
+						'user_id' => $contact[0]['user_id']
+						);
+					$this->session->set_userdata($ra1);
+
 					$data['contact'] = $contact[0];
 
 					$this->load->library('email');
 					$this->email->set_mailtype("html");
 
-					$this->email->from('welcome@coefoto.com');
+					$this->email->from('service@coefoto.com');
 					$this->email->to($contact[0]['email']); 
 					$this->email->bcc('bradslavens@gmail.com'); 
 					$msg  = $this->load->view('mail/reg_verification', $data, TRUE);
@@ -210,7 +217,6 @@ class Photo extends CI_Controller {
 	}
 
 	public function sign_reg(){
-		echo $this->session->userdata('source');
 		$this->load->view('header');
 
 		$data['source'] = $this->session->userdata('source');
@@ -279,6 +285,12 @@ class Photo extends CI_Controller {
 				$this->load->view('sign_reg', $data);
 			}
 			else{
+
+				$ra2 = array(
+					'user_id' => $contact[0]['user_id']
+					);
+				$this->session->set_userdata($ra2);
+
 				$data['contact'] = $contact[0];
 				$this->load->view('order_form', $data);
 			}
@@ -286,6 +298,48 @@ class Photo extends CI_Controller {
 
 
 		$this->load->view('footer');
+	}
+
+	public function order(){
+
+		if(!$this->session->userdata('user_id')){
+
+			echo "not signed in";
+
+		}else{
+			$this->main->place_order();
+
+			// get contact info
+			$contact = $this->main->get('contacts', array( 'id' => $this->input->post('id')));
+	        // codeigniter email template
+
+			$ra1 = array(
+				'user_id' => $contact[0]['user_id']
+				);
+			$this->session->set_userdata($ra1);
+
+			$data['contact'] = $contact[0];
+
+			$this->load->library('email');
+			$this->email->set_mailtype("html");
+
+			$this->email->from('service@coefoto.com');
+			$this->email->to($contact[0]['email']); 
+			$this->email->bcc('bradslavens@gmail.com'); 
+			$msg  = $this->load->view('mail/ord_verification', $data, TRUE);
+			// $msg .= $this->load->view(signature);
+
+			$this->email->subject('COE Foto -Order Confirmation');
+			$this->email->message($msg); 
+			$this->email->set_alt_message('error the email requires html, please contact Service at 619-253-0529');
+			// echo $msg;
+			$this->email->send();
+
+			$this->load->view('header');
+
+			$this->load->view('ord_thanks',$data);
+			$this->load->view('footer');
+		}
 	}
 
 }

@@ -42,7 +42,7 @@ class Main extends CI_Model {
 		
 	}
 
-	public function place_order($contact_id){
+	public function place_order(){ 
 
 		if($this->input->post()){
 
@@ -55,7 +55,7 @@ class Main extends CI_Model {
 				'zip' => $this->input->post('zip'),
 				'package' => $this->input->post('package1'),
 				'fee' => $this->input->post('fee'),
-				'cont_id' => $contact_id,
+				'cont_id' => $this->input->post('id'),
 				'active' => 1
 				);
 

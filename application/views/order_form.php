@@ -13,7 +13,7 @@ input {
 <div class="container" id="register">
 	<div class="row">
 		<div class="col-md-8">
-			<h2 class="tag_text">Welcome Back <?php echo $contact['first_name']; ?></h2>
+			<h2 class="tag_text">Welcome <?php echo $contact['first_name']; ?></h2>
 			Please Complete the order form and one of our photographers will give you a call.
 			<div class="errors">
 				<?php echo validation_errors(); ?>
@@ -64,7 +64,7 @@ input {
 
 			  </div> <!-- property_dets -->
 
-			  <input type="hidden" name= "user_id" value="<?php echo $contact['user_id']; ?>">
+			  <input type="hidden" name= "id" value="<?php echo $contact['id']; ?>">
 
  			  <div class="g-recaptcha" data-sitekey="6Lf4sxUTAAAAAOrUfluOStkbwuxuJWCDlmFWXp-5"></div>
  			  
