@@ -9,7 +9,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<div class="col-md-4 col-sm-6">
 			<div class="row">
 				<p id="tag_line">GET REAL ESTATE PHOTOS FOR YOUR LISTINGS NOW... <br /><span>PAY LATER!</span><br>& ONLY IF IT CLOSES!</p>
-				<a href="#register"><button class="btn-default pull-left">Order Now</button><span class="pull-right" style="font-size: 1em; margin-top: -10px;">(no credit card required, no payment until closeof escrow)</span></a>
+				<a href="sign_reg"><button class="btn-default pull-left">Order Now</button><span class="pull-right" style="font-size: 1em; margin-top: -10px;">(no credit card required, no payment until closeof escrow)</span></a>
 
 			</div>
 			<div id="offer" class="row">

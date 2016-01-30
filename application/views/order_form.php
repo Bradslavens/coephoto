@@ -14,20 +14,18 @@ input {
 	<div class="row">
 		<div class="col-md-8">
 			<h2 class="tag_text">Welcome Back <?php echo $contact['first_name']; ?></h2>
-			<p>Please complete this form to place an order.  No Credit Card is required.</p>
-			<p>Once we receive an order one of our photographers will call you to schedule the appointment. The appointments are 30 minutes. They will shoot as much as they can in 30 minutes. You can give them direction.</p>
-			<p>You will also receive the agreement via Docusign to your email address on file. Please sign the agreement stating that you agree to pay us at close of escrow. We can bill your broker or Escorw.</p>
-			<p>The Agreement includes a 100% Satisfaction Guarantee stating that you may cancel the order for any reason by phone or email within 48 hours of receiving the pictures.</p>
+			Please Complete the order form and one of our photographers will give you a call.
+			<div class="errors">
+				<?php echo validation_errors(); ?>
+			</div>
 
-			<?php echo validation_errors(); ?>
-
-			<?php echo form_open('http://dev.photo/sign_in/order'); //<form> 	?>
+			<?php echo form_open('order'); //<form> 	?>
 
 			<!-- <form action="reg_form" id="registration"> -->
 
 			  <div id= "property_dets" > <!-- display if client wants to order a shoot -->
 
-			  <p>Enter the address for your order. The fee is just <span class= "offer_1">299 and you only pay if and when it closes!</span></p>
+			  <p>Enter the address for your order. The fee is just <span class= "offer_1">$299 and you only pay if and when it closes! (<noframes></noframes> credit card required. No upfront fees.)</span></p>
 			  
 			  <div class="form-group">
 			    <label for="Address">Address 1</label>

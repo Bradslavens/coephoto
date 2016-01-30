@@ -19,8 +19,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						<li>If it doesn’t close, You don’t pay</li>
 						<li>100% Satisfaction Guaranteed (** cancel for any reason within 48 hours of receiving the photos’)</li>
 						<li>Register for Free</li>
-						<li>Schedule a shoot, use the photos and You won’t pay unless it closes!</li>
-						<li>Offer only available to Real Estate Agents</li>
+						<li>Schedule a shoot, use the photos and you won’t pay unless it closes!</li>
 					</ul>
 				</div>
 			</div>

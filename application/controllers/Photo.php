@@ -10,12 +10,15 @@ class Photo extends CI_Controller {
          $this->load->helper('form');
          $this->load->model('main');
 		 $this->load->helper('url'); // for photo caro
+		 $this->load->library('session');
     }
 
 	public function index($ad = "none")
 	{
-		$_SESSION['source'] = $ad;
-
+		$ra = array(
+			'source' => $ad
+			);
+		$this->session->set_userdata($ra);
 
 		// if($page == 'reg_form'){
 		// 	echo 'reg';
@@ -27,16 +30,16 @@ class Photo extends CI_Controller {
 		$this->load->view('nav');
 		$this->load->view('home');
 		$this->load->view('break');
+		$this->load->view('mail_list');
+		$this->load->view('break');
 		$this->load->view('about');
 		$this->load->view('break');
 		$this->load->view('works');
-		$this->load->view('break');
 		$this->load->view('break');
 		$this->load->view('staff');
 		$this->load->view('break');
 		$this->load->view('caro');
 		$this->load->view('break');
-		// $this->load->view('mail_list');
 		// $this->load->view('break');
 		$this->load->view('footer');
 	}
@@ -69,6 +72,7 @@ class Photo extends CI_Controller {
 		    Helper Functions
 		***********************************************/
 
+		// web hook login MailChimp
 		function wh_log($msg){
 		    $file_data = date("Y-m-d H:i:s")." | ".$msg."\n";
 
@@ -136,18 +140,12 @@ class Photo extends CI_Controller {
 		 $this->load->library('form_validation');
 
 		 $this->form_validation->set_rules('first_name', 'First Name', 'trim|required');
+		 $this->form_validation->set_rules('mi', 'MI', 'trim|max_length[2]');
 		 $this->form_validation->set_rules('last_name', 'Last Name', 'trim|required');
 		 $this->form_validation->set_rules('email', 'Email', 'callback_username_check|required');
     	 $this->form_validation->set_rules('phone', 'Phone', 'trim|max_length[15]');
 		 $this->form_validation->set_rules('password', 'Password', 'required');
 		 $this->form_validation->set_rules('mail_list', 'Mail List', 'trim|max_length[1]|numeric');
-		 $this->form_validation->set_rules('address_1', 'Address 1', 'trim');
-		 $this->form_validation->set_rules('address_2', 'Address 2', 'trim');
-		 $this->form_validation->set_rules('city', 'City', 'trim');
-		 $this->form_validation->set_rules('state', 'State', 'trim|max_length[20]|alpha');
-		 $this->form_validation->set_rules('zip', 'Zip', 'trim|max_length[10]|numeric');
-		 $this->form_validation->set_rules('package', 'Package', 'trim|max_length[5]|numeric');
-		 $this->form_validation->set_rules('fee', 'Fee', 'trim|max_length[8]|numeric');
 		 $this->form_validation->set_rules('source', 'Source', 'trim|max_length[8]|alpha_numeric');
 
 		 // recaptcha
@@ -156,13 +154,13 @@ class Photo extends CI_Controller {
 		if ($this->form_validation->run() === FALSE)
 		{
 			$this->load->view('header');
-			$this->load->view('register');
+			$this->load->view('sign_reg');
 			$this->load->view('footer');
 		}
 		elseif(!$captcha){
 			// check recaptcha
 			$this->load->view('header');
-			$this->load->view('register');
+			$this->load->view('sign_reg');
 			$this->load->view('footer');
 			// add message 
 		}else{
@@ -199,37 +197,27 @@ class Photo extends CI_Controller {
 					$this->email->set_alt_message('error the email requires html, please contact Service at 619-253-0529');
 					// echo $msg;
 					$this->email->send();
-
-					// place order
-					if($this->input->post('address_1')){
-						if($order_number = $this->main->place_order($id)){
-							// get contact info
-					        // codeigniter email template
-							$this->email->set_mailtype("html");
-
-							$this->email->from('welcome@coefoto.com');
-							$this->email->to($contact[0]['email']); 
-							$this->email->bcc('bradslavens@gmail.com'); 
-							$msg  = $this->load->view('mail/ord_verification', $data, TRUE);
-							// $msg .= $this->load->view(signature);
-
-							$this->email->subject('Order Confirmation');
-							$this->email->message($msg); 
-							$this->email->set_alt_message('error');
-							// echo $msg;
-							$this->email->send();
-
-						}
-
-					}
 					
 				}
 					$this->load->view('header');
+
 					$this->load->view('reg_thanks');
+					$this->load->view('order_form', $data);
 					$this->load->view('footer');
 			}
 
 		}
+	}
+
+	public function sign_reg(){
+		echo $this->session->userdata('source');
+		$this->load->view('header');
+
+		$data['source'] = $this->session->userdata('source');
+ 
+		$this->load->view('sign_reg', $data);
+
+		$this->load->view('footer');
 	}
 
 	public function username_check($str )
@@ -269,25 +257,28 @@ class Photo extends CI_Controller {
 		}
 	}
 
-	public function sign_in($page = "home"){
-		
+	public function sign_in(){
+
+		// validate form
+		$this->load->library('form_validation');
+
+		$this->form_validation->set_rules('email', 'Email', 'valid_email|required');
+		$this->form_validation->set_rules('password', 'Password', 'required');
 
 		$this->load->view('header');
+		if ($this->form_validation->run() === FALSE){
 
-		if($page == 'order'){
-			//place order
-			// send contact dets to order form
-			// send response email
+			$this->load->view('sign_reg');
+
 		}
 		else{
-
 			$contact = $this->main->check_login();
+		
 			if($contact === FALSE ){
 				$data['response'] = "login Failed, please try again ";
-				$this->load->view('top', $data);
+				$this->load->view('sign_reg', $data);
 			}
-			else
-			{
+			else{
 				$data['contact'] = $contact[0];
 				$this->load->view('order_form', $data);
 			}

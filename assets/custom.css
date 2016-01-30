@@ -127,21 +127,10 @@ body {
 	font-size: 1.5em;
 }
 
-#register{
-	background: #8cc63f;
-	color: white;
+#register, #sign_in {
+	color: black;
 	font-size: 1.5em;
 	padding-bottom: 30px;
-}
-
-#register  button.btn-default {
-	background: transparent;
-	border-radius: 5px;
-	border-style: solid;
-	border-width: 3px;
-	border-color: white;
-	color: white;
-	margin-bottom: 30px;
 }
 
 #mail_list {

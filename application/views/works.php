@@ -10,7 +10,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			<div class="row">
 				<div class="col-md-12">
 					<span class=" tag_text">How It Works</span>
-					<p>We are for agents by agents - Coe Foto was started by real estate agents to make professional quality photography available to all agents.</p>
 				</div>
 			</div>
 			<div class="row">
@@ -20,7 +19,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						<li>If you have a listing click the box to order now</li>
 						<li>Sign the agreement</li>
 						<li>One of our staff Photographers will contact you for an appointment</li>
-						<li>Meet our fotographer at the property for the shoot. Should last no more than 30 minutes.</li>
+						<li>Meet our photographer at the property for the shoot. Should last no more than 30 minutes.</li>
 						<li>Offer only available to Real Estate Agents</li>
 						<li>Receive the photos</li>
 						<li>Close escrow.</li>
